@@ -1,11 +1,11 @@
-<app-header></app-header>
+<app-header (featureSelected)="onNavigate($event)"></app-header>
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <app-orders></app-orders>
-      <app-reservations></app-reservations>
-      <app-workschedule></app-workschedule>
-      <app-settings></app-settings>
+      <app-orders *ngIf="loadedFeature === 'orders'"></app-orders>
+      <app-reservations *ngIf="loadedFeature === 'reservations'"></app-reservations>
+      <app-workschedule *ngIf="loadedFeature === 'workschedule'"></app-workschedule>
+      <app-settings *ngIf="loadedFeature === 'settings'"></app-settings>
     </div>
   </div>
 </div>

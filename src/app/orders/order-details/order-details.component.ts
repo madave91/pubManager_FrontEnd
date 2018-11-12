@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Detail } from './detail.model'
 
 @Component({
@@ -7,7 +7,7 @@ import { Detail } from './detail.model'
   styleUrls: ['./order-details.component.css']
 })
 export class OrderDetailsComponent implements OnInit {
-
+  @Input() selectedOrder;
   details: Detail[] = [
     new Detail(1, 1, "Absolut Vodka", 3, 1800, "citrommal"),
     new Detail(2, 1, "Jim Beam", 2, 1400, "jéggel"),
@@ -31,5 +31,15 @@ export class OrderDetailsComponent implements OnInit {
       i.selected = false;
     }
     detail.selected = true;
+  }
+
+  public  setShow(orderId: number): void{
+    for(let i of this.details){
+      if(i.orderId != orderId){
+        i.show = false;
+      }else{
+        i.show = true;
+      }
+    } 
   }
 }

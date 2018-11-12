@@ -19,7 +19,7 @@ export class Detail{
         this.show= false
     }
 
-   /* setShow(orderId: number){
+  /* public setShow(orderId: number){
           if(this.orderId == orderId){
             this.show = true;
           }else{

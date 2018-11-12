@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-xs-12" *ngFor="let order of orders" [class.selected]="order.selected === true">
+  <div class="col-xs-12"  *ngFor="let order of orders" [class.selected]="order.selected === true">
     <span class="label label-info" *ngIf="order.selected === true">Order ID: {{order.selected.id}}</span>
   </div>
 </div>
@@ -16,16 +16,16 @@
       </tr>
     </thead>
   <tbody> 
-    <tr *ngFor="let detail of details"  [class.selected]="detail === selectedDetail" (click)="onSelect(detail)">   
-          <th scope="row" >{{detail.id}}</th>
-          <td>{{detail.name}}</td>
-          <td>{{detail.quantity}}</td>
-          <td>{{detail.price}}</td>
-          <td>{{detail.paid}}</td>
-          <td>{{detail.comment}}</td>
-          <td><button type="button" class="btn btn-success" ng-model="selected">{{detail.selected}}</button></td>
+    <tr *ngFor="let detail of details"  [class.selected]="detail === selectedDetail" (click)="onSelect(detail)" >   
+        <th scope="row" ngShow="detail.show">{{detail.id}}</th>
+        <td>{{detail.name}}</td>
+        <td>{{detail.quantity}}</td>
+        <td>{{detail.price}}</td>
+        <td>{{detail.paid}}</td>
+        <td>{{detail.comment}}</td>
+        <td><button type="button" class="btn btn-success" ng-model="selected">{{detail.selected}}</button></td> 
     </tr>
-  </tbody>
+  </tbody>>
 </table>
 <hr>
 <div class="text-center">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { Order } from '../order.model'
 import { Detail } from '../order-details/detail.model'
 
@@ -14,14 +14,14 @@ export class OrderListComponent implements OnInit {
     new Order(3, new Date('2018-10-14'), 1800),
     new Order(4, new Date('2018-10-13'), 12000)
   ];
-  selectedOrder : Order;
+  @Output() orderWasSelected =new EventEmitter<Order>();
   constructor() { }
 
   ngOnInit() {
   }
 
   onSelect(order: Order): void{
-    this.selectedOrder = order;
+    this.orderWasSelected.emit(order);
     for(let i of this.orders){
       i.selected = false;
     }
