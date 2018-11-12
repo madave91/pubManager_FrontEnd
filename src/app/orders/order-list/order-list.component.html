@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success">New Order</button>
+  </div>
+</div>
+<hr>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">OrderID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Price</th>
+        <th scope="col">Paid</th>
+        <th scope="col">Selected</th>
+      </tr>
+    </thead>
+  <tbody class="orders"> 
+    <tr *ngFor="let order of orders"  [class.selected]="order === selectedOrder" (click)="onSelect(order)"> 
+      <th scope="row">{{order.id}}</th>
+      <td>{{order.date +'Z' | date : 'yyyy-MM-dd'}}</td>
+      <td>{{order.price}}</td>
+      <td>{{order.paid}}</td>
+      <td *ngIf="order == selectedOrder; else notSelected" class="text-center"><span class="label label-success">{{order.selected}}</span> 
+      </td>
+      <ng-template #notSelected >
+        <td class="text-center">
+          <span class="label label-primary text-center">{{order.selected}}</span>
+        </td>
+      </ng-template>
+    </tr>
+    
+  </tbody>
+</table>
