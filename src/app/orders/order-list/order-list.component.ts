@@ -22,10 +22,10 @@ export class OrderListComponent implements OnInit {
 
   onSelect(order: Order): void{
     this.orderWasSelected.emit(order.id);
+    console.log(order.id);
     for(let i of this.orders){
       i.selected = false;
     }
     order.selected = true;   
   }
-
 }

@@ -1,6 +1,5 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Order } from './order.model';
-import {  } from 'events';
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { OrderDetailsComponent } from './order-details/order-details.component'
 
 @Component({
   selector: 'app-orders',
@@ -8,10 +7,14 @@ import {  } from 'events';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  selectedOrder: Order;
+  @ViewChild(OrderDetailsComponent) child: OrderDetailsComponent;
+  selectedOrderNumber: number;
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() { 
+  }
+  refreshDetails(){
+    this.child.setShow();
   }
 }

@@ -7,7 +7,7 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">Id</th>
+        <th scope="col">Id: {{orderId}}</th>
         <th scope="col">Product</th>
         <th scope="col">Quantity</th>
         <th scope="col">Price</th>
@@ -16,8 +16,7 @@
         <th scope="col">Selected</th>
       </tr>
     </thead>
-  <tbody>  
-    {{setShow()}}  
+  <tbody>
     <tr *ngFor="let detail of details" [class.selected]="detail === selectedDetail" (click)="onSelect(detail)" >   
         <th scope="row" *ngIf="detail.show == true">{{detail.id}}</th>
         <td *ngIf="detail.show == true">{{detail.name}}</td>

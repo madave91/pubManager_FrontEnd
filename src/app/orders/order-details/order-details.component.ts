@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Detail } from './detail.model';
 
 @Component({
@@ -18,7 +18,7 @@ export class OrderDetailsComponent implements OnInit {
     new Detail(1, 4, "Aperol", 1, 900, "cocktail: Aperol Spritz"),
     new Detail(2, 4, "Pezsgő", 2, 800, "coctail: Aperol Spritz")
   ]
-  @Input() orderId: number;
+  @Input('orderIdValue') orderId: number;
   selectedDetail : Detail;
 
 
@@ -26,6 +26,7 @@ export class OrderDetailsComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   
   onSelect(detail: Detail): void{
     this.selectedDetail = detail;
@@ -37,16 +38,15 @@ export class OrderDetailsComponent implements OnInit {
   onDetailSelected(detail: Detail){
 
   }
-  public setShow(): void{
+  setShow(): void{
     for(let i of this.details){
       if(i.orderId != this.orderId){
         i.show = false;
       }else{
         i.show = true;
       }
-    } 
-  }
-  public setOrderId(num: number){
-    this.orderId = num;
+      
+    }
+    this.ngOnInit(); 
   }
 }
