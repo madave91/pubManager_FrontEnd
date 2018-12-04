@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Detail } from './detail.model'
+import { Detail } from './detail.model';
 
 @Component({
   selector: 'app-order-details',
@@ -7,7 +7,6 @@ import { Detail } from './detail.model'
   styleUrls: ['./order-details.component.css']
 })
 export class OrderDetailsComponent implements OnInit {
-  @Input() selectedOrder;
   details: Detail[] = [
     new Detail(1, 1, "Absolut Vodka", 3, 1800, "citrommal"),
     new Detail(2, 1, "Jim Beam", 2, 1400, "jéggel"),
@@ -19,12 +18,15 @@ export class OrderDetailsComponent implements OnInit {
     new Detail(1, 4, "Aperol", 1, 900, "cocktail: Aperol Spritz"),
     new Detail(2, 4, "Pezsgő", 2, 800, "coctail: Aperol Spritz")
   ]
+  @Input() orderId: number;
   selectedDetail : Detail;
+
+
   constructor() { }
 
   ngOnInit() {
   }
-
+  
   onSelect(detail: Detail): void{
     this.selectedDetail = detail;
     for(let i of this.details){
@@ -32,14 +34,19 @@ export class OrderDetailsComponent implements OnInit {
     }
     detail.selected = true;
   }
+  onDetailSelected(detail: Detail){
 
-  public  setShow(orderId: number): void{
+  }
+  public setShow(): void{
     for(let i of this.details){
-      if(i.orderId != orderId){
+      if(i.orderId != this.orderId){
         i.show = false;
       }else{
         i.show = true;
       }
     } 
+  }
+  public setOrderId(num: number){
+    this.orderId = num;
   }
 }

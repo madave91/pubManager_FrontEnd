@@ -15,7 +15,6 @@ import { SettingsComponent } from './settings/settings.component';
 import { ReservationListComponent } from './reservations/reservation-list/reservation-list.component';
 import { TablesComponent } from './reservations/tables/tables.component';
 import { ReservationDetailsComponent } from './reservations/reservation-details/reservation-details.component';
-import { DetailComponent } from './orders/order-details/detail/detail.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +29,10 @@ import { DetailComponent } from './orders/order-details/detail/detail.component'
     ReservationListComponent,
     TablesComponent,
     ReservationDetailsComponent,
-    DetailComponent,
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule, 
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory

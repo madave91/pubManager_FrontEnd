@@ -14,18 +14,18 @@ export class OrderListComponent implements OnInit {
     new Order(3, new Date('2018-10-14'), 1800),
     new Order(4, new Date('2018-10-13'), 12000)
   ];
-  @Output() orderWasSelected =new EventEmitter<Order>();
+  @Output() orderWasSelected =new EventEmitter<number>();
   constructor() { }
 
   ngOnInit() {
   }
 
   onSelect(order: Order): void{
-    this.orderWasSelected.emit(order);
+    this.orderWasSelected.emit(order.id);
     for(let i of this.orders){
       i.selected = false;
     }
-    order.selected = true;
-    
+    order.selected = true;   
   }
+
 }
