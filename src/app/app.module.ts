@@ -15,6 +15,9 @@ import { SettingsComponent } from './settings/settings.component';
 import { ReservationListComponent } from './reservations/reservation-list/reservation-list.component';
 import { TablesComponent } from './reservations/tables/tables.component';
 import { ReservationDetailsComponent } from './reservations/reservation-details/reservation-details.component';
+import { OrderService } from './services/order.service';
+import { HttpClientModule } from '@angular/common/http';
+import { OrderDetailsService } from './services/order-details.service';
 
 @NgModule({
   declarations: [
@@ -32,13 +35,14 @@ import { ReservationDetailsComponent } from './reservations/reservation-details/
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule, 
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
     })
   ],
-  providers: [],
+  providers: [OrderService, OrderDetailsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

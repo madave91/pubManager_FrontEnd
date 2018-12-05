@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Detail } from './detail.model';
+import { OrderDetailsService } from '../../services/order-details.service'
 
 @Component({
   selector: 'app-order-details',
@@ -7,7 +8,8 @@ import { Detail } from './detail.model';
   styleUrls: ['./order-details.component.css']
 })
 export class OrderDetailsComponent implements OnInit {
-  details: Detail[] = [
+  details: Detail[];
+  /* = [
     new Detail(1, 1, "Absolut Vodka", 3, 1800, "citrommal"),
     new Detail(2, 1, "Jim Beam", 2, 1400, "jéggel"),
     new Detail(1, 2, "Bacardi Rum", 2, 1400, ""),
@@ -17,28 +19,28 @@ export class OrderDetailsComponent implements OnInit {
     new Detail(3, 3, "Captain Morgan Spice", 2, 1500, ""),
     new Detail(1, 4, "Aperol", 1, 900, "cocktail: Aperol Spritz"),
     new Detail(2, 4, "Pezsgő", 2, 800, "coctail: Aperol Spritz")
-  ]
+  ]*/
   @Input('orderIdValue') orderId: number;
   selectedDetail : Detail;
 
 
-  constructor() { }
+  constructor(public os: OrderDetailsService) { }
 
   ngOnInit() {
   }
   
   
-  onSelect(detail: Detail): void{
+  /*onSelect(detail: Detail): void{
     this.selectedDetail = detail;
     for(let i of this.details){
       i.selected = false;
     }
     detail.selected = true;
-  }
+  }*/
   onDetailSelected(detail: Detail){
 
   }
-  setShow(): void{
+  /*setShow(): void{
     for(let i of this.details){
       if(i.orderId != this.orderId){
         i.show = false;
@@ -47,6 +49,7 @@ export class OrderDetailsComponent implements OnInit {
       }
       
     }
-    this.ngOnInit(); 
-  }
+    //this.ngOnInit(); 
+   
+  }*/
 }

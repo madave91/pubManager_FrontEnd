@@ -16,8 +16,8 @@
     </thead>
   <tbody class="orders"> 
     <tr *ngFor="let order of orders"  [class.selected]="order === selectedOrder" (click)="onSelect(order)">
-      <th scope="row">{{order.id}}</th>
-      <td>{{order.date +'Z' | date : 'yyyy-MM-dd'}}</td>
+      <th scope="row">{{order.orderId}}</th>
+      <td>{{order.orderDate +'Z' | date : 'yyyy-MM-dd'}}</td>
       <td>{{order.price}}</td>
       <td>{{order.paid}}</td>
       <td *ngIf="order == selectedOrder; else notSelected" class="text-center"><span class="label label-success">{{order.selected}}</span> 

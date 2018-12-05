@@ -1,22 +1,17 @@
 export class Detail{
     public id: number;
-    public orderId: number;
-    public name: string;
+    //public orderId: number;
+    public productName: string;
     public quantity: number;
-    public price: number;
+    //public price: number;
     public comment: string;
-    public selected: boolean;
-    public show : boolean;
 
-    constructor(id: number, orderId: number, name: string, quantity: number, price: number, comment: string){
-        this.id = id;
-        this.orderId = orderId;
-        this.name = name;
-        this.quantity = quantity;
-        this.price = price;
-        this.comment = comment;
-        this.selected = false;
-        this.show= false
+    deserialize(input: any): this {
+      this.id = input.id;
+      this.productName = input.productName;
+      this.quantity = input.quantity;
+      this.comment = input.comment;
+      return this;
     }
 
   /* public setShow(orderId: number){
