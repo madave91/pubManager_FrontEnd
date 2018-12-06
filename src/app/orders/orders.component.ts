@@ -19,9 +19,10 @@ export class OrdersComponent implements OnInit {
     
   }
   refreshDetails(){
-   // this.child.setShow();
     if(this.selectedOrderNumber != null && this.child2.called == true){
-      this.child.os.getOrderDetails(this.selectedOrderNumber);
+      if(this.child2.orders[this.selectedOrderNumber-1].customerOrderProducts != null){
+        this.child.setShow();
+      }
       this.child2.called = false;
     }  
   }

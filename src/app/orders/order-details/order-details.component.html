@@ -18,20 +18,25 @@
     </thead>
   <tbody>
     <tr *ngFor="let detail of details" [class.selected]="detail === selectedDetail" (click)="onSelect(detail)" >   
-        <th scope="row" *ngIf="detail.show == true">{{detail.id}}</th>
-        <td *ngIf="detail.show == true">{{detail.name}}</td>
-        <td *ngIf="detail.show == true">{{detail.quantity}}</td>
-        <td *ngIf="detail.show == true">{{detail.price}}</td>
-        <td *ngIf="detail.show == true">{{detail.comment}}</td>
-        <td *ngIf="detail.show == true">{{detail.paid}}</td>
-        <td *ngIf="detail.show == true"><button type="button" class="btn btn-success" ng-model="selected">{{detail.selected}}</button></td> 
+        <th scope="row">{{detail.id}}</th>
+        <td>{{detail.productName}}</td>
+        <td>{{detail.quantity}}</td>
+        <td>{{detail.price}}</td>
+        <td>{{detail.comment}}</td>
+        <td>{{detail.paid}}</td>
+        <td><button type="button" class="btn btn-success" ng-model="selected">{{detail.selected}}</button></td> 
     </tr>
   </tbody>
 </table>
 <hr>
 <div class="text-center">
-    <button type="button" class="btn btn-primary">+</button>
+    
+    <button type="button" class="btn btn-primary" (click)="openModal('modal-1')">
+      ADD PRODUCT
+    </button>
+  
   </div>
   <div class="text-center">
-    <button type="button" class="btn btn-success">Checkout</button>
+    <button type="button" class="btn btn-success">CHECKOUT</button>
   </div>
+  <app-product></app-product>

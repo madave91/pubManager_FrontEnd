@@ -1,5 +1,5 @@
 import { Detail } from "./order-details/detail.model";
-import { Deserializable } from "./deserializable.model";
+import { Deserializable } from "../deserializable.model";
 
 export class Order implements Deserializable{
     public orderId: number;

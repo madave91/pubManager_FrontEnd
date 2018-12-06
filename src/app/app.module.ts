@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -18,6 +19,10 @@ import { ReservationDetailsComponent } from './reservations/reservation-details/
 import { OrderService } from './services/order.service';
 import { HttpClientModule } from '@angular/common/http';
 import { OrderDetailsService } from './services/order-details.service';
+import { ModalComponent } from './products/modal.component';
+import { ModalService } from './products/modal.service';
+import { ProductComponent } from './products/product/product.component'
+
 
 @NgModule({
   declarations: [
@@ -26,15 +31,18 @@ import { OrderDetailsService } from './services/order-details.service';
     OrdersComponent,
     OrderListComponent,
     OrderDetailsComponent,
+    ProductComponent,
     ReservationsComponent,
     WorkscheduleComponent,
     SettingsComponent,
     ReservationListComponent,
     TablesComponent,
     ReservationDetailsComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule, 
     HttpClientModule,
     BrowserAnimationsModule, 
     CalendarModule.forRoot({
@@ -42,7 +50,7 @@ import { OrderDetailsService } from './services/order-details.service';
       useFactory: adapterFactory
     })
   ],
-  providers: [OrderService, OrderDetailsService],
+  providers: [OrderService, OrderDetailsService, ModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

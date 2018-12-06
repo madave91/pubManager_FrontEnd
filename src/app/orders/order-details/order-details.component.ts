@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Detail } from './detail.model';
 import { OrderDetailsService } from '../../services/order-details.service'
+import { ModalService } from '../../products/modal.service'
 
 @Component({
   selector: 'app-order-details',
@@ -8,7 +9,7 @@ import { OrderDetailsService } from '../../services/order-details.service'
   styleUrls: ['./order-details.component.css']
 })
 export class OrderDetailsComponent implements OnInit {
-  details: Detail[];
+  details: Array<Detail> = [];
   /* = [
     new Detail(1, 1, "Absolut Vodka", 3, 1800, "citrommal"),
     new Detail(2, 1, "Jim Beam", 2, 1400, "jéggel"),
@@ -20,36 +21,37 @@ export class OrderDetailsComponent implements OnInit {
     new Detail(1, 4, "Aperol", 1, 900, "cocktail: Aperol Spritz"),
     new Detail(2, 4, "Pezsgő", 2, 800, "coctail: Aperol Spritz")
   ]*/
-  @Input('orderIdValue') orderId: number;
+  @Input('orderIdValue') orderId: number = 0;
   selectedDetail : Detail;
 
 
-  constructor(public os: OrderDetailsService) { }
+  constructor(private os: OrderDetailsService, private modalService: ModalService) { }
 
   ngOnInit() {
+    this.details = [];
+    this.os.getOrderDetails(this.orderId).subscribe((details: Detail[]) => {
+      console.log(details);
+      for(var i=0; i<details.length; i++){
+        this.details.push(new Detail().deserialize(details[i]));  
+      }
+      console.log(this.details);
+    });
   }
-  
-  
-  /*onSelect(detail: Detail): void{
-    this.selectedDetail = detail;
-    for(let i of this.details){
-      i.selected = false;
-    }
-    detail.selected = true;
-  }*/
-  onDetailSelected(detail: Detail){
-
+   
+  openModal(id: string) {
+    this.modalService.open(id);
+}
+  setShow(): void{
+    this.ngOnInit(); 
   }
-  /*setShow(): void{
-    for(let i of this.details){
-      if(i.orderId != this.orderId){
-        i.show = false;
+  onSelect(detail: Detail){
+    for(var i=0; i<this.details.length; i++){
+      if(this.details[i].id != detail.id){
+        this.details[i].selected = false;
       }else{
-        i.show = true;
+        this.details[i].selected = true;
       }
       
     }
-    //this.ngOnInit(); 
-   
-  }*/
+  }
 }

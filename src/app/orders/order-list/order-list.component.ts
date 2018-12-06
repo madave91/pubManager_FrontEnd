@@ -36,13 +36,13 @@ export class OrderListComponent implements OnInit {
     
   }
 
-  /*onSelect(order: Order): void{
-    this.orderWasSelected.emit(order.id);
+  onSelect(order: Order): void{
+    this.orderWasSelected.emit(order.orderId);
     this.called = true;
-    console.log(order.id);
+    console.log(order.orderId);
     for(let i of this.orders){
       i.selected = false;
     }
     order.selected = true;
-  }*/
+  }
 }

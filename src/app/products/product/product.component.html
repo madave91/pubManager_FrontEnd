@@ -1,0 +1,12 @@
+<modal id="modal-1" class="modal">
+    <div class="modal-body" style="background-color: rgba(0, 0, 0, 0.9); color: aliceblue">
+        <h1 style="height:100px">Products</h1>
+        <ul *ngFor="let product of products">
+            <li (click)="onSelect(product)">
+              <p>{{product.productName}}</p>
+            </li>
+          </ul>
+        <button (click)="closeModal('modal-1');">Close</button>
+    </div>
+<div class="modal-background"></div>
+</modal>
