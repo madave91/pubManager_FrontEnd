@@ -1,7 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Detail } from './detail.model';
 import { OrderDetailsService } from '../../services/order-details.service'
 import { ModalService } from '../../products/modal.service'
+import { Product } from 'src/app/products/product/product.model';
+import { ProductComponent } from 'src/app/products/product/product.component';
 
 @Component({
   selector: 'app-order-details',
@@ -23,7 +25,8 @@ export class OrderDetailsComponent implements OnInit {
   ]*/
   @Input('orderIdValue') orderId: number = 0;
   selectedDetail : Detail;
-
+  newDetail: Detail;
+  orderSelected= false;
 
   constructor(private os: OrderDetailsService, private modalService: ModalService) { }
 
@@ -42,6 +45,7 @@ export class OrderDetailsComponent implements OnInit {
     this.modalService.open(id);
 }
   setShow(): void{
+    this.orderSelected = true;
     this.ngOnInit(); 
   }
   onSelect(detail: Detail){
@@ -51,7 +55,12 @@ export class OrderDetailsComponent implements OnInit {
       }else{
         this.details[i].selected = true;
       }
-      
     }
+  }
+
+  addNewDetail(product: Product, quantity: number){
+    var detail = new Detail().deserialize(product);
+    detail.quantity = quantity;
+    this.details.push(detail);
   }
 }

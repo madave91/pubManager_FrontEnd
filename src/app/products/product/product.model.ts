@@ -8,6 +8,7 @@ export class Product implements Deserializable{
     public actualQuantity: number;
     public type: string;
     public details: string;
+    public selected: boolean
 
     
 
@@ -20,6 +21,7 @@ export class Product implements Deserializable{
         this.actualQuantity = input.actualQuantity;
         this.type = input.type;
         this.details = input.details;
+        this.selected = false;
         return this;
     }
 }

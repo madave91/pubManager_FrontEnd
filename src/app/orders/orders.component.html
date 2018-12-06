@@ -3,10 +3,11 @@
     <app-order-list (orderWasSelected) = "selectedOrderNumber = $event"><p></p></app-order-list>
   </div>
   <div class="col-md-7">
-    <app-order-details
+    <app-order-details 
     [orderIdValue]="selectedOrderNumber" 
-    >{{refreshDetails()}}<p>{{orderIdValue}}</p></app-order-details>
+    >{{refreshDetails()}}</app-order-details>
   </div>
+  
 </div>
 
 
