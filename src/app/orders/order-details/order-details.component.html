@@ -10,6 +10,7 @@
         <th scope="col">Product</th>
         <th scope="col">Quantity</th>
         <th scope="col">Price</th>
+        <th scope="col">Sum</th>
         <th scope="col">Details</th>
         <th scope="col">Selected</th>
       </tr>
@@ -20,8 +21,9 @@
         <td>{{detail.productName}}</td>
         <td>{{detail.quantity}}</td>
         <td>{{detail.price}}</td>
+        <td>{{detail.sum}}</td>
         <td>{{detail.comment}}</td>
-        <td><button type="button" class="btn btn-success" ng-model="selected">{{detail.selected}}</button></td> 
+        <td><button type="button" class="btn btn-success" ng-model="selected">{{detail.selected}}</button></td>
     </tr>
   </tbody>
 </table>
@@ -31,11 +33,11 @@
     <button type="button" class="btn btn-primary" (click)="openModal('modal-1')">
       ADD PRODUCT
     </button>
-    <button type="button" class="btn btn-warning">DELETE</button>
+    <button type="button" class="btn btn-warning" (click)="deleteDetail()">DELETE</button>
     <button type="button" class="btn btn-success">CHECKOUT</button>   
   </div>
 </div>
-  <app-product (newDetail) = "newProductToDetail = $event"></app-product>
+  <app-product (counter) = 'getNewQuantity($event)' (newDetail) = 'addNewDetail($event)'></app-product>
   <ng-template #notSelected>
       <div class="col-xs-12" style="text-align: center;">
         <span class="label label-primary text-center">NO ORDER SELECTED</span>

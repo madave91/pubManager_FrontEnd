@@ -27,6 +27,7 @@ export class OrderDetailsComponent implements OnInit {
   selectedDetail : Detail;
   newDetail: Detail;
   orderSelected= false;
+  quantity = 0;
 
   constructor(private os: OrderDetailsService, private modalService: ModalService) { }
 
@@ -49,6 +50,7 @@ export class OrderDetailsComponent implements OnInit {
     this.ngOnInit(); 
   }
   onSelect(detail: Detail){
+    this.selectedDetail = detail;
     for(var i=0; i<this.details.length; i++){
       if(this.details[i].id != detail.id){
         this.details[i].selected = false;
@@ -58,9 +60,40 @@ export class OrderDetailsComponent implements OnInit {
     }
   }
 
-  addNewDetail(product: Product, quantity: number){
-    var detail = new Detail().deserialize(product);
-    detail.quantity = quantity;
-    this.details.push(detail);
+  //functions to get a new detail
+  addNewDetail(product: Product){
+    if(product != null){
+      product = new Product().deserialize(product);
+      var detail: Detail = new Detail();
+      detail.id = product.id;
+      detail.productName = product.productName;
+      detail.quantity = this.quantity;
+      detail.price = product.price;
+      detail.sum = product.price*this.quantity;
+      detail.comment = "something";
+      new Detail().deserialize(detail);
+      this.details.push(detail);
+      this.os.addOrderDetail(this.orderId, detail).subscribe();
+    }
+  }
+
+  getNewQuantity(quantity){
+    console.log(quantity);
+    if(quantity != null && quantity != 0){     
+      this.quantity = quantity;
+    }   
+  }
+
+  deleteDetail(){
+    console.log("deleteDetail", this.selectedDetail)
+    this.os.deleteDetail(this.orderId, this.details[this.details.length-1].id).subscribe();
+    this.details.splice(this.details.length-1, 1);
+    /*for(var i=0; i<this.details.length; i++){
+      if(this.details[i]==this.selectedDetail){
+        console.log("found! orderID: " + this.orderId + "selectedDetailId: " + this.selectedDetail.id);
+        this.details.splice(i, 1);
+        this.os.deleteDetail(this.orderId, this.selectedDetail.id).subscribe();
+      }
+    }*/
   }
 }

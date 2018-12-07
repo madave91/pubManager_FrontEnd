@@ -29,8 +29,8 @@
                 </tr>
               </tbody>
             </table>
-        <button type="button" class="btn btn-warning" (click)="closeModal('modal-1');">Close</button>
-        <button type="button" *ngIf="productSelected == true" class="btn btn-primary" style="float: right;" (click)="addProductToDetails(selectedProduct, quantity)">Add Product</button>
+        <button type="button" class="btn btn-warning" (click)="cancelDetail(); closeModal('modal-1');">Cancel</button>
+        <button type="button" *ngIf="productSelected == true" class="btn btn-primary" style="float: right;" (click)="addProductToDetails(selectedProduct, quantity); closeModal('modal-1');">Add Product</button>
         <input type="number" [(ngModel)]="quantity"  *ngIf="productSelected == true" style="float: right; color: black; width: 50px; height: 34px;"/>   
     </div>
 <div class="modal-background"></div>

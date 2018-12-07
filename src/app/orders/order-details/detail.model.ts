@@ -6,6 +6,7 @@ export class Detail implements Deserializable{
     public productName: string;
     public quantity: number;
     public price: number;
+    public sum: number;
     public comment: string;
     public selected: boolean;
 
@@ -14,6 +15,7 @@ export class Detail implements Deserializable{
       this.productName = input.productName;
       this.quantity = input.quantity;
       this.price = input.price;
+      this.sum = input.price * input.quantity;
       this.comment = input.comment;
       this.selected = false;
       return this;

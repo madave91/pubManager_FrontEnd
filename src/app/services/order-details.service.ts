@@ -13,4 +13,10 @@ export class OrderDetailsService {
   getOrderDetails(id: number): Observable<Detail[]>{
     return this.httpClient.get<Detail[]>("http://localhost:8080/orders/"+id+"/details");
   }
+  addOrderDetail(orderId: number, detail: Detail): Observable<{}>{
+    return this.httpClient.post("http://localhost:8080/orders/"+ orderId + "/details/", detail);
+  }
+  deleteDetail(orderId: number, detailId: number): Observable<{}>{
+    return this.httpClient.delete("http://localhost:8080/orders/"+orderId+"/details/"+detailId);
+  }
 }

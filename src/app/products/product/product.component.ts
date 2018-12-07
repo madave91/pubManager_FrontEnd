@@ -15,7 +15,8 @@ export class ProductComponent implements OnInit {
     products: Array<Product> = [];
     selectedProduct : Product;
     productSelected = false;
-    @Output('quantity') quantity: number;
+    @Output('counter') counter = new EventEmitter<number>();
+    //@Output('quantity') quantity = new EventEmitter();
     @Output('newDetail') newDetail = new EventEmitter<Product>();
     constructor(private productService: ProductService, private modalService: ModalService) { }
 
@@ -34,6 +35,7 @@ export class ProductComponent implements OnInit {
         this.modalService.close(id);
     }
     onSelect(product: Product){
+        this.selectedProduct = product;
         for(var i=0; i<this.products.length; i++){
             if(this.products[i].id != product.id){
                 this.products[i].selected = false;
@@ -44,10 +46,16 @@ export class ProductComponent implements OnInit {
         }
     }
 
-    addProductToDetails(product: Product, quantity: number){
-        this.newDetail.emit(product);
-        this.quantity = quantity;
-        console.log(this.quantity);
+    addProductToDetails(product: Product, counter: number){
+        console.log(this.selectedProduct);
+        this.counter.emit(counter);
+        this.newDetail.emit(product);     
+        //this.quantity.emit(this.counter);
+        console.log(this.counter);
         console.log(this.newDetail);
+    }
+    cancelDetail(){
+        this.counter.emit(null);
+        this.newDetail.emit(null);    
     }
 }
