@@ -50,9 +50,9 @@ export class ProductComponent implements OnInit {
 
     addProductToDetails(product: Product, counter: number){
         console.log(this.selectedProduct);
+        this.sendComment.emit(this.comment)
         this.counter.emit(counter);
         this.newDetail.emit(product);     
-        this.sendComment.emit(this.comment)
         //this.quantity.emit(this.counter);
         console.log(this.counter);
         console.log(this.newDetail);

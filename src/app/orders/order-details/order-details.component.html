@@ -42,7 +42,7 @@
     <button type="button" class="btn btn-success">CHECKOUT</button>   
   </div>
 </div>
-  <app-product (counter) = 'getNewQuantity($event)' (sendComment) = 'setComment($event)' (newDetail) = 'addNewDetail($event)'></app-product>
+  <app-product (sendComment) = 'setComment($event)' (counter) = 'getNewQuantity($event)' (newDetail) = 'addNewDetail($event)'></app-product>
   <ng-template #notSelected>
       <div class="col-xs-12" style="text-align: center;">
         <span class="label label-primary text-center">NO ORDER SELECTED</span>
