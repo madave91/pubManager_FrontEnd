@@ -8,7 +8,7 @@
       <tr>
         <th scope="col">OrderID</th>
         <th scope="col">Date</th>
-        <th scope="col">Price</th>
+        <th scope="col">Time</th>
         <th scope="col">Paid</th>
         <th scope="col">Selected</th>
       </tr>
@@ -17,7 +17,7 @@
     <tr *ngFor="let order of orders"  [class.selected]="order === selectedOrder" (click)="onSelect(order)">
       <th scope="row">{{order.orderId}}</th>
       <td>{{order.orderDate +'Z' | date : 'yyyy-MM-dd'}}</td>
-      <td>{{order.price}}</td>
+      <td>{{order.orderDate +'Z' | date : 'HH:mm'}}</td>
       <td>{{order.paid}}</td>
       <td *ngIf="order == selectedOrder; else notSelected" class="text-center"><span class="label label-success">{{order.selected}}</span> 
       </td>
@@ -30,8 +30,9 @@
     
   </tbody>
 </table>
+<hr>
 <div class="text-center">
-    <button type="button" class="btn btn-warning">DELETE</button>
-    <button type="button" class="btn btn-success">NEW ORDER</button>
-    
-  </div>
+    <button type="button" class="btn btn-warning" (click)="openModal('deleteOrder')" >DELETE</button>
+    <button type="button" class="btn btn-success" (click)="newOrder()">NEW ORDER</button>
+</div>
+<app-delete-order (delOrder) = 'deleteOrder()'></app-delete-order>

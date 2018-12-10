@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { Order } from '../order.model'
 import { OrderService } from '../../services/order.service'
 import { Observable } from 'rxjs';
+import { ModalService } from 'src/app/products/modal.service';
 
 
 @Component({
@@ -20,8 +21,9 @@ export class OrderListComponent implements OnInit {
   ];*/
 
   @Output() orderWasSelected =new EventEmitter<number>();
+  @Input('price') price: number = 0;
   called = false;
-  constructor(private os: OrderService) {
+  constructor(private os: OrderService, private modalService: ModalService) {
    }
     
   ngOnInit() {
@@ -44,5 +46,32 @@ export class OrderListComponent implements OnInit {
       i.selected = false;
     }
     order.selected = true;
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  newOrder(){
+    var order: Order = new Order();
+    order.orderId = this.orders[this.orders.length-1].orderId+1;
+    order.paid = false;
+    order.price = 0;
+    order.selected = false;
+    order.orderDate = new Date();
+    //order.customerOrderProducts = null;
+    new Order().deserialize(order);
+    this.orders.push(order);
+    this.os.addOrder(order).subscribe()
+
+  }
+
+  deleteOrder(){
+    for(var i=0; i<this.orders.length; i++){
+      if(this.orders[i].selected == true){
+        this.os.deleteOrder(this.orders[i].orderId).subscribe();  
+        this.orders.splice(i, 1);        
+      }
+    }
   }
 }

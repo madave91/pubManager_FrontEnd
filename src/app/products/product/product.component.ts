@@ -17,6 +17,8 @@ export class ProductComponent implements OnInit {
     productSelected = false;
     @Output('counter') counter = new EventEmitter<number>();
     //@Output('quantity') quantity = new EventEmitter();
+    comment = "";
+    @Output() sendComment = new EventEmitter<String>();
     @Output('newDetail') newDetail = new EventEmitter<Product>();
     constructor(private productService: ProductService, private modalService: ModalService) { }
 
@@ -50,6 +52,7 @@ export class ProductComponent implements OnInit {
         console.log(this.selectedProduct);
         this.counter.emit(counter);
         this.newDetail.emit(product);     
+        this.sendComment.emit(this.comment)
         //this.quantity.emit(this.counter);
         console.log(this.counter);
         console.log(this.newDetail);

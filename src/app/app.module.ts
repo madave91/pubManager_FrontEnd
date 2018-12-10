@@ -21,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { OrderDetailsService } from './services/order-details.service';
 import { ModalComponent } from './products/modal.component';
 import { ModalService } from './products/modal.service';
-import { ProductComponent } from './products/product/product.component'
+import { ProductComponent } from './products/product/product.component';
+import { DeleteOrderComponent } from './orders/order-list/delete-order/delete-order.component'
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { ProductComponent } from './products/product/product.component'
     TablesComponent,
     ReservationDetailsComponent,
     ModalComponent,
+    DeleteOrderComponent,
   ],
   imports: [
     BrowserModule,

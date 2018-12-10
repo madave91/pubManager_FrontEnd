@@ -27,11 +27,14 @@
                     <span [ngClass]="product == selectedProduct ? 'label label-warning': 'label label-primary'">{{product.selected}}</span>
                   </td>
                 </tr>
-              </tbody>
-            </table>
+            </tbody>
+          </table>
         <button type="button" class="btn btn-warning" (click)="cancelDetail(); closeModal('modal-1');">Cancel</button>
         <button type="button" *ngIf="productSelected == true" class="btn btn-primary" style="float: right;" (click)="addProductToDetails(selectedProduct, quantity); closeModal('modal-1');">Add Product</button>
-        <input type="number" [(ngModel)]="quantity"  *ngIf="productSelected == true" style="float: right; color: black; width: 50px; height: 34px;"/>   
-    </div>
-<div class="modal-background"></div>
+        <input type="number" [(ngModel)]="quantity"  *ngIf="productSelected == true" style="float: right; color: black; width: 50px; height: 34px; margin-right: 10px;"/>   
+        <span class="label label-primary text-center" *ngIf="productSelected == true" style="float: right; font-size: 10pt; line-height: 26px;">Quantity:</span>
+        <input type="text" [(ngModel)]="comment" *ngIf="productSelected == true" style="float: right; color: black; width: 200px; height: 34px; margin-right: 10px;" />
+        <span class="label label-primary text-center" *ngIf="productSelected == true" style="float: right; font-size: 10pt; line-height: 26px;">Comment:</span>
+      </div>
+  <div class="modal-background"></div>
 </modal>

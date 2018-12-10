@@ -28,8 +28,6 @@ export class ModalComponent implements OnInit, OnDestroy {
         document.body.appendChild(this.element);
 
         
-
-
         // close modal on background click
         this.element.addEventListener('click', function (e: any) {
             if (e.target.className === 'modal') {

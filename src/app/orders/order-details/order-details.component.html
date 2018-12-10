@@ -28,16 +28,21 @@
   </tbody>
 </table>
 <hr>
+<div>
+  <p style="font-size: 18pt;">TOTAL: <span style="float: right; margin-right: 40%;">{{total}}</span> </p> 
+</div>
+
+<hr>
 <div class="text-center">
     
     <button type="button" class="btn btn-primary" (click)="openModal('modal-1')">
       ADD PRODUCT
     </button>
-    <button type="button" class="btn btn-warning" (click)="deleteDetail()">DELETE</button>
+    <button type="button" class="btn btn-warning" (click)="deleteDetail()">DELETE LAST</button>
     <button type="button" class="btn btn-success">CHECKOUT</button>   
   </div>
 </div>
-  <app-product (counter) = 'getNewQuantity($event)' (newDetail) = 'addNewDetail($event)'></app-product>
+  <app-product (counter) = 'getNewQuantity($event)' (sendComment) = 'setComment($event)' (newDetail) = 'addNewDetail($event)'></app-product>
   <ng-template #notSelected>
       <div class="col-xs-12" style="text-align: center;">
         <span class="label label-primary text-center">NO ORDER SELECTED</span>

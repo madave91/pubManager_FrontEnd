@@ -14,10 +14,10 @@ export class OrderService {
   getOrders(): Observable<Order[]>{
     return this.httpClient.get<Order[]>("http://localhost:8080/orders/");
   }
-  addOrder(order: Order){
-    this.httpClient.post("http://localhost:8080/orders/", order);
+  addOrder(order: Order): Observable<{}>{
+    return this.httpClient.post("http://localhost:8080/orders/", order);
   }
-  deleteOrder(id:number){
-    this.httpClient.delete("http://localhost:8080/orders/"+id);
+  deleteOrder(id:number): Observable<{}>{
+    return this.httpClient.delete("http://localhost:8080/orders/"+id);
   }
 }

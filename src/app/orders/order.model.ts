@@ -2,6 +2,7 @@ import { Detail } from "./order-details/detail.model";
 import { Deserializable } from "../deserializable.model";
 
 export class Order implements Deserializable{
+    public static counter = 0;
     public orderId: number;
     public customerOrderProducts:  Array<Detail> = [];
     public price: number;

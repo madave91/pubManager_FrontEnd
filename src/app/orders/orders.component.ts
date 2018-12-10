@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { OrderDetailsComponent } from './order-details/order-details.component'
 import { OrderListComponent } from './order-list/order-list.component'
+import {  } from 'protractor';
 
 
 @Component({
@@ -20,7 +21,9 @@ export class OrdersComponent implements OnInit {
   }
   refreshDetails(){
     if(this.selectedOrderNumber != null && this.child2.called == true){
-      if(this.child2.orders[this.selectedOrderNumber-1].customerOrderProducts != null){
+      console.log("selected order number: " + this.selectedOrderNumber);
+      console.log(this.child2.orders[this.selectedOrderNumber]);
+      if(this.child2.orders[this.selectedOrderNumber].customerOrderProducts != null){
         this.child.setShow();
       }
       this.child2.called = false;

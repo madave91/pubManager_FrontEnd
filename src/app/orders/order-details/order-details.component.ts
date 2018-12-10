@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Detail } from './detail.model';
 import { OrderDetailsService } from '../../services/order-details.service'
 import { ModalService } from '../../products/modal.service'
@@ -28,15 +28,20 @@ export class OrderDetailsComponent implements OnInit {
   newDetail: Detail;
   orderSelected= false;
   quantity = 0;
+  comment = "";
+  total = 0;
 
   constructor(private os: OrderDetailsService, private modalService: ModalService) { }
 
   ngOnInit() {
     this.details = [];
+    this.total = 0;
     this.os.getOrderDetails(this.orderId).subscribe((details: Detail[]) => {
       console.log(details);
       for(var i=0; i<details.length; i++){
-        this.details.push(new Detail().deserialize(details[i]));  
+        var detail: Detail = new Detail().deserialize(details[i])
+        this.details.push(detail);
+        this.total += detail.sum;
       }
       console.log(this.details);
     });
@@ -44,7 +49,7 @@ export class OrderDetailsComponent implements OnInit {
    
   openModal(id: string) {
     this.modalService.open(id);
-}
+  }
   setShow(): void{
     this.orderSelected = true;
     this.ngOnInit(); 
@@ -70,9 +75,10 @@ export class OrderDetailsComponent implements OnInit {
       detail.quantity = this.quantity;
       detail.price = product.price;
       detail.sum = product.price*this.quantity;
-      detail.comment = "something";
+      detail.comment = this.comment;
       new Detail().deserialize(detail);
       this.details.push(detail);
+      this.total += detail.sum;
       this.os.addOrderDetail(this.orderId, detail).subscribe();
     }
   }
@@ -83,11 +89,17 @@ export class OrderDetailsComponent implements OnInit {
       this.quantity = quantity;
     }   
   }
+  setComment(comment){
+    if(comment != "" || comment != null){
+      this.comment = comment;
+    }
+  }
 
   deleteDetail(){
-    console.log("deleteDetail", this.selectedDetail)
+    this.total -= this.details[this.details.length-1].sum;
     this.os.deleteDetail(this.orderId, this.details[this.details.length-1].id).subscribe();
     this.details.splice(this.details.length-1, 1);
+    
     /*for(var i=0; i<this.details.length; i++){
       if(this.details[i]==this.selectedDetail){
         console.log("found! orderID: " + this.orderId + "selectedDetailId: " + this.selectedDetail.id);
